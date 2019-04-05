@@ -1,0 +1,25 @@
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="{% url 'home' %}">Home</a> |
+            <a href="/admin" target="_blank">Admin</a>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 text-right">
+            {% if user.is_authenticated %}
+                <a style="color: gray" href="{% url 'profiles:login' %}">Login</a> |
+                <a href="{% url 'profiles:logout' %}">Logout</a> |
+                <a style="color: gray" href="{% url 'profiles:signup' %}">SignUp</a>
+                <strong>|| user: {{ user.username }}</strong>
+            {% else %}
+                <a href="{% url 'profiles:login' %}">Login</a> |
+                <a style="color: gray" href="{% url 'profiles:logout' %}">Logout</a> |
+                <a href="{% url 'profiles:signup' %}">SignUp</a>
+            {% endif %}
+        </div>
+
+
+    </div>
+    <hr>
+</div>
