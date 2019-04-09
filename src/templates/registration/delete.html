@@ -1,0 +1,27 @@
+{% extends 'base_simple_form.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Delete Confirmation
+{% endblock %}
+
+{% block content_title %}
+    <h1 class="text-center">Delete account</h1>
+    <h4 class="text-center" style="color: red">
+        Your account will be deleted.<br>
+        You will not be able to revert this action.<br><br>
+        Are you sure?<br><br>
+    </h4>
+{%  endblock %}
+
+{% block content_form %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-center">
+            <a class="btn btn-success mr-1" href="{% url 'profiles:update' pk=user.pk %}" style="width: 8em">No</a>
+            <button class="btn btn-danger ml-2" href="{% url 'home' %}" style="width: 12em" type="submit">Yes, delete my account</button>
+        </div>
+    </form>
+{% endblock %}

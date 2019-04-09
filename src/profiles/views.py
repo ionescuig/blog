@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, DeleteView, TemplateView, UpdateView
 from django.urls import reverse, reverse_lazy
 
 
@@ -19,7 +19,7 @@ def activate(request, code):
         profile.activation_key = None
         profile.activated = True
         profile.user.save()
-        return redirect('profiles:account_success')
+        return redirect('profiles:update', pk=profile.user.pk)
     else:
         return redirect('profiles:account_invalid')
 
@@ -52,5 +52,22 @@ class AccountActivationInvalidView(TemplateView):
     template_name = 'profiles/account_activation_invalid.html'
 
 
-class AccountActivationSuccessView(TemplateView):
-    template_name = 'profiles/account_activation_success.html'
+class UpdateUserView(UpdateView):
+    template_name = 'registration/update.html'
+    success_url = '/'
+    fields = ['first_name', 'last_name', 'email']
+
+    def get_queryset(self):
+        return User.objects.all()
+
+
+class DeleteConfirmationView(TemplateView):
+    template_name = 'registration/delete_confirmation.html'
+
+
+class DeleteUserView(DeleteView):
+    template_name = 'registration/delete.html'
+    success_url = reverse_lazy('profiles:delete_confirmation')
+
+    def get_queryset(self):
+        return User.objects.all()

@@ -1,0 +1,16 @@
+{% extends 'base_simple_form.html' %}
+{% load static %}
+
+{% block title %}
+    Delete Confirmation
+{% endblock %}
+
+{% block content_title %}
+    <h1 class="text-center">Delete account</h1>
+    <h4 class="text-center" style="color: red">
+        Your account has been deleted.<br>
+    </h4>
+    <div class="text-center">
+        <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+    </div>
+{% endblock %}

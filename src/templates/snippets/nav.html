@@ -1,21 +1,23 @@
 <div class="container">
     <br>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-5">
             <a href="{% url 'home' %}">Home</a> |
             <a href="/admin" target="_blank">Admin</a>
         </div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4 text-right">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-5 text-right">
             {% if user.is_authenticated %}
                 <a style="color: gray" href="{% url 'profiles:login' %}">Login</a> |
                 <a href="{% url 'profiles:logout' %}">Logout</a> |
-                <a style="color: gray" href="{% url 'profiles:signup' %}">SignUp</a>
+                <a style="color: gray" href="{% url 'profiles:signup' %}">SignUp</a> |
+                <a href="{% url 'profiles:update' pk=user.pk %}">Update Profile</a>
                 <strong>|| user: {{ user.username }}</strong>
             {% else %}
                 <a href="{% url 'profiles:login' %}">Login</a> |
                 <a style="color: gray" href="{% url 'profiles:logout' %}">Logout</a> |
-                <a href="{% url 'profiles:signup' %}">SignUp</a>
+                <a href="{% url 'profiles:signup' %}">SignUp</a> |
+                <a style="color: gray" href="#">Update Profile</a>
             {% endif %}
         </div>
 
