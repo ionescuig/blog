@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Post
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="text-center">
+            <h1>{{ object.title }}</h1>
+            {% if object.draft %}
+                <h5 class="text-danger">Draft</h5>
+            {% endif %}
+        </div>
+        <div>
+            <p><strong>Content:</strong> {{ object.content|linebreaksbr }}</p>
+            <p><strong>Draft:</strong> {{ object.draft }}</p>
+            <p><strong>Published date:</strong> {{ object.published_date }}</p>
+        </div>
+    </div>
+{% endblock %}
