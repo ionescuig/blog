@@ -10,14 +10,22 @@
     <div class="container">
         <div class="text-center">
             <h1>{{ object.title }}</h1>
+            <h5 class="text-muted">by {{ object.author }}</h5>
             {% if object.draft %}
                 <h5 class="text-danger">Draft</h5>
             {% endif %}
         </div>
         <div>
-            <p><strong>Content:</strong> {{ object.content|linebreaksbr }}</p>
+            <p><strong>Content:</strong> {{ object.content|safe|linebreaksbr }}</p>
+            <hr>
             <p><strong>Draft:</strong> {{ object.draft }}</p>
+            <hr>
             <p><strong>Published date:</strong> {{ object.published_date }}</p>
+            {% if object.author == request.user %}
+                <hr>
+                <a class="btn btn-primary" href="{% url 'posts:update' slug=object.slug %}">Update</a>
+                <a class="btn btn-danger" href="{% url 'posts:delete' slug=object.slug %}">Delete</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

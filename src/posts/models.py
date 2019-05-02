@@ -8,7 +8,7 @@ class Post(models.Model):
     author          = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     title           = models.CharField(max_length=120)
     content         = models.TextField()
-    published_date  = models.DateTimeField(auto_now_add=True)
+    published_date  = models.DateTimeField(auto_now=True)
     draft           = models.BooleanField(default=True)
     slug            = models.SlugField()
 
@@ -24,4 +24,4 @@ class Post(models.Model):
         return reverse('posts:detail', kwargs={'slug': self.slug})
 
     class Meta:
-        ordering = ['-title']
+        ordering = ['title']

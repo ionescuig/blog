@@ -1,0 +1,30 @@
+{% extends 'base_simple_form.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Delete Post
+{% endblock %}
+
+{% block content_title %}
+    <h3>Delete Post</h3>
+    <h1>{{ object.title }}</h1>
+    <hr>
+    {% if object.author == request.user %}
+        <h5>Are you sure you want to delete this post?</h5>
+    {% else %}
+        <h5>You are not authorised to delete this post!</h5>
+    {% endif %}
+
+{% endblock %}
+
+{% block content_form %}
+    {% if object.author == request.user %}
+        <form class="text-center" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-danger" type="submit" value="Delete Post">
+            <a class="btn btn-primary" href="{% url 'posts:detail' slug=object.slug %}">Cancel</a>
+        </form>
+    {% endif %}
+{% endblock %}

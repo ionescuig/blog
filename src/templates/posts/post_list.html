@@ -13,8 +13,10 @@
         </div>
         <div>
             {% for obj in object_list %}
-                <a href="{% url 'posts:detail' slug=obj.slug %}" style="font-size: 1.5rem">{{ obj }}</a>
-                <spam class="text-muted"> - {{ obj.author }}</spam>
+                <div>
+                    <a href="{% url 'posts:detail' slug=obj.slug %}" style="font-size: 1.5rem">{{ obj }}</a>
+                    <spam class="text-muted"> by {{ obj.author }}</spam>
+                </div>
             {% endfor %}
         </div>
     </div>
