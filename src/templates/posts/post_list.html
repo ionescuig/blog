@@ -16,6 +16,8 @@
                 <div>
                     <a href="{% url 'posts:detail' slug=obj.slug %}" style="font-size: 1.5rem">{{ obj }}</a>
                     <spam class="text-muted"> by {{ obj.author }}</spam>
+                    <div class="text-muted">{{ obj.get_html|truncatechars_html:150 }}</div>
+                    <hr>
                 </div>
             {% endfor %}
         </div>

@@ -16,7 +16,7 @@
             {% endif %}
         </div>
         <div>
-            <p><strong>Content:</strong> {{ object.content|safe|linebreaksbr }}</p>
+            <p><strong>Content:</strong><br>{{ object.get_html }}</p>
             <hr>
             <p><strong>Draft:</strong> {{ object.draft }}</p>
             <hr>

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # third party packages
     'crispy_forms',
+    'markdown_deux',
+    'pagedown',
     'storages',
 
     # local packages

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     # third party packages
     'crispy_forms',
+    'markdown_deux',
+    'pagedown',
     'storages',
 
     # local packages
@@ -131,3 +133,12 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MARKDOWN_DEUX_STYLES = {
+    "default": {
+        "extras": {
+            "fenced-code-blocks": True,
+        },
+        # ...
+    },
+}

@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
+from django.utils.safestring import mark_safe
+from markdown_deux import markdown
 
 
 class Post(models.Model):
@@ -22,6 +24,11 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('posts:detail', kwargs={'slug': self.slug})
+
+    def get_html(self):
+        content = self.content
+        html_text = markdown(content)
+        return mark_safe(html_text)
 
     class Meta:
         ordering = ['title']

@@ -7,19 +7,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- jQuery CDN -->
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+    <!-- Marked CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.2/marked.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link
+            rel="stylesheet"
+            href="{% static 'css/base.css' %}">
 
     <title>
         {% block title %}
             Blog
         {% endblock %}
     </title>
+    {% block head_extra %}{% endblock head_extra %}
 </head>
+
 <body>
-<div class="container-fluid">
-    {% include 'snippets/nav.html' %}
-    {% block content %}{% endblock %}
-</div>
+    <div class="container-fluid">
+        {% include 'snippets/nav.html' %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <script type="text/javascript">
+       $(document).ready(function(){
+
+           // preview-title
+           var titleInput = $("#id_title")
+           function setTitleContent(value) {
+               var markedContent = marked(value)
+               $("#preview-title").html(markedContent)
+           }
+           setTitleContent(titleInput.val())
+           titleInput.keyup(function () {
+               var newContent = $(this).val()
+               setTitleContent(newContent)
+           })
+
+           // preview-content
+           var contentInput = $("#id_content")
+           function setContent(value) {
+               var markedContent = marked(value)
+               $("#preview-content").html(markedContent)
+               $("#preview-content img").each(function(){
+                   $(this).addClass("img-fluid")
+               })
+           }
+           setContent(contentInput.val())
+           contentInput.keyup(function () {
+               var newContent = $(this).val()
+               setContent(newContent)
+           })
+       })
+    </script>
+
 </body>
 </html>
