@@ -9,23 +9,28 @@
 {% block content %}
     <div class="container">
         <div class="text-center">
-            <h1>{{ object.title }}</h1>
-            <h5 class="text-muted">by {{ object.author }}</h5>
+            <h1>{{ object.title }}
+                <spam class="text-muted"><small>
+                    {% if object.author != request.user %}
+                        by {{ object.author }} -
+                    {% endif %}
+                    {{ object.published_date|date }} at {{ object.published_date|time:"H:i" }}
+                </small></spam>
+            </h1>
             {% if object.draft %}
                 <h5 class="text-danger">Draft</h5>
             {% endif %}
         </div>
-        <div>
-            <p><strong>Content:</strong><br>{{ object.get_html }}</p>
-            <hr>
-            <p><strong>Draft:</strong> {{ object.draft }}</p>
-            <hr>
-            <p><strong>Published date:</strong> {{ object.published_date }}</p>
-            {% if object.author == request.user %}
+        <div class="row">
+            <div class="offset-sm-2">
                 <hr>
-                <a class="btn btn-primary" href="{% url 'posts:update' slug=object.slug %}">Update</a>
-                <a class="btn btn-danger" href="{% url 'posts:delete' slug=object.slug %}">Delete</a>
-            {% endif %}
+                <p>{{ object.get_html }}</p>
+                {% if object.author == request.user %}
+                    <hr>
+                    <a class="btn btn-primary" href="{% url 'posts:update' slug=object.slug %}">Update</a>
+                    <a class="btn btn-danger" href="{% url 'posts:delete' slug=object.slug %}">Delete</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}

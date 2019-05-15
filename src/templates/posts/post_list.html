@@ -9,7 +9,7 @@
 {% block content %}
     <div class="container">
         <div class="text-center">
-            <h1>Posts List</h1>
+            <h1>My posts</h1>
             <br><br>
         </div>
         <div>
@@ -21,7 +21,7 @@
                             - draft
                         {% endif %}
                     </spam>
-                    <p class="text-muted"> by <u>{{ obj.author }}</u> on {{ obj.published_date|date }} at {{ obj.published_date|time:"H:i" }}</p>
+                    <p class="text-muted">{{ obj.published_date|date }} at {{ obj.published_date|time:"H:i" }}</p>
                     <div class="ml-5">
                         {{ obj.get_html|truncatechars_html:80 }}
                     </div>
