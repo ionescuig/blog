@@ -10,13 +10,21 @@
     <div class="container">
         <div class="text-center">
             <h1>Posts List</h1>
+            <br><br>
         </div>
         <div>
             {% for obj in object_list %}
                 <div>
                     <a href="{% url 'posts:detail' slug=obj.slug %}" style="font-size: 1.5rem">{{ obj }}</a>
-                    <spam class="text-muted"> by {{ obj.author }}</spam>
-                    <div class="text-muted">{{ obj.get_html|truncatechars_html:150 }}</div>
+                    <spam style="color: red">
+                        {% if obj.draft %}
+                            - draft
+                        {% endif %}
+                    </spam>
+                    <p class="text-muted"> by <u>{{ obj.author }}</u> on {{ obj.published_date|date }} at {{ obj.published_date|time:"H:i" }}</p>
+                    <div class="ml-5">
+                        {{ obj.get_html|truncatechars_html:80 }}
+                    </div>
                     <hr>
                 </div>
             {% endfor %}

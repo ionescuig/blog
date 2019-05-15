@@ -57,4 +57,4 @@ class PostListView(ListView):
     template_name = 'posts/post_list.html'
 
     def get_queryset(self):
-        return Post.objects.all()
+        return Post.objects.all().order_by("-published_date")

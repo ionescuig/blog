@@ -45,30 +45,36 @@
     <script type="text/javascript">
        $(document).ready(function(){
 
+           // marked options
+           marked.setOptions({
+               gfm: true,
+               breaks: true,
+            });
+
            // preview-title
-           var titleInput = $("#id_title")
+           var titleInput = $("#id_title");
            function setTitleContent(value) {
-               var markedContent = marked(value)
+               var markedContent = marked(value);
                $("#preview-title").html(markedContent)
            }
-           setTitleContent(titleInput.val())
+           setTitleContent(titleInput.val());
            titleInput.keyup(function () {
-               var newContent = $(this).val()
+               var newContent = $(this).val();
                setTitleContent(newContent)
-           })
+           });
 
            // preview-content
-           var contentInput = $("#id_content")
+           var contentInput = $("#id_content");
            function setContent(value) {
-               var markedContent = marked(value)
-               $("#preview-content").html(markedContent)
+               var markedContent = marked(value);
+               $("#preview-content").html(markedContent);
                $("#preview-content img").each(function(){
                    $(this).addClass("img-fluid")
-               })
+               });
            }
-           setContent(contentInput.val())
+           setContent(contentInput.val());
            contentInput.keyup(function () {
-               var newContent = $(this).val()
+               var newContent = $(this).val();
                setContent(newContent)
            })
        })
