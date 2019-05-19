@@ -3,7 +3,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from markdown_deux import markdown
+from markdownx.utils import markdownify
 
 
 class Post(models.Model):
@@ -27,8 +27,8 @@ class Post(models.Model):
 
     def get_html(self):
         content = self.content
-        html_text = markdown(content)
-        return mark_safe(html_text)
+        content_md = markdownify(content)
+        return mark_safe(content_md)
 
     class Meta:
         ordering = ['title']

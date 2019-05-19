@@ -20,9 +20,6 @@
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous">
 
-    <!-- Marked CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.2/marked.min.js"></script>
-
     <!-- Custom CSS -->
     <link
             rel="stylesheet"
@@ -41,44 +38,6 @@
         {% include 'snippets/nav.html' %}
         {% block content %}{% endblock %}
     </div>
-
-    <script type="text/javascript">
-       $(document).ready(function(){
-
-           // marked options
-           marked.setOptions({
-               gfm: true,
-               breaks: true,
-            });
-
-           // preview-title
-           var titleInput = $("#id_title");
-           function setTitleContent(value) {
-               var markedContent = marked(value);
-               $("#preview-title").html(markedContent)
-           }
-           setTitleContent(titleInput.val());
-           titleInput.keyup(function () {
-               var newContent = $(this).val();
-               setTitleContent(newContent)
-           });
-
-           // preview-content
-           var contentInput = $("#id_content");
-           function setContent(value) {
-               var markedContent = marked(value);
-               $("#preview-content").html(markedContent);
-               $("#preview-content img").each(function(){
-                   $(this).addClass("img-fluid")
-               });
-           }
-           setContent(contentInput.val());
-           contentInput.keyup(function () {
-               var newContent = $(this).val();
-               setContent(newContent)
-           })
-       })
-    </script>
 
 </body>
 </html>

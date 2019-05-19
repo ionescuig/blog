@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
+from markdownx import urls as markdownx
 
 from posts.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('markdownx/', include(markdownx)),
     path('posts/', include(('posts.urls', 'posts'), namespace='posts')),
     path('profile/', include(('profiles.urls', 'profiles'), namespace='profiles')),
     path('', include('django.contrib.auth.urls')),

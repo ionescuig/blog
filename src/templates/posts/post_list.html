@@ -21,9 +21,9 @@
                             - draft
                         {% endif %}
                     </spam>
-                    <p class="text-muted">{{ obj.published_date|date }} at {{ obj.published_date|time:"H:i" }}</p>
+                    <p class="text-muted">{{ obj.published_date|date }} @ {{ obj.published_date|time:"H:i" }}</p>
                     <div class="ml-5">
-                        {{ obj.get_html|truncatechars_html:80 }}
+                        {{ obj.get_html|truncatechars_html:120 }}
                     </div>
                     <hr>
                 </div>

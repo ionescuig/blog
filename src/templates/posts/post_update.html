@@ -18,26 +18,13 @@
         </div>
         <div>
             {% if object.author == request.user %}
-                <div class="row">
-                    <div class="col-sm-6 border-right">
-                        <h4 class="text-center text-muted">Form</h4>
-                        <hr>
-                        <form method="POST">
-                            {% csrf_token %}
-                            {{ form|crispy }}
-                            <input class="btn btn-primary" type="submit" value="Update Post">
-                            <a class="btn btn-danger" href="{% url 'posts:detail' slug=object.slug %}">Cancel</a>
-                        </form>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="content-preview">
-                            <h4 class="text-center text-muted">Preview</h4>
-                            <hr>
-                            <h2 id="preview-title"></h2><br>
-                            <p id="preview-content"></p>
-                        </div>
-                    </div>
+                <div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input class="btn btn-primary" type="submit" value="Update Post">
+                        <a class="btn btn-danger" href="{% url 'posts:detail' slug=object.slug %}">Cancel</a>
+                    </form>
                 </div>
             {% else %}
                 <h5 class="text-center">You are not authorised to edit this post!</h5>
